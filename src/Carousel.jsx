@@ -1,8 +1,8 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import img5 from './assets/img5.png';
-import img4 from './assets/img4.jpg';
-import img1 from './assets/img1.jpg';
+import img5 from './assets/img5.webp';
+import img4 from './assets/img4.webp';
+import img1 from './assets/img1.webp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Slider = () => {
