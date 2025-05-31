@@ -1,8 +1,10 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
+    const navigate = useNavigate()
     return (
         <Navbar
 
@@ -18,7 +20,8 @@ function NavBar() {
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="ms-auto gap-4">
                         <Nav.Link
-                            href="/book"
+
+                            onClick={() => navigate('/book')}
                             className="px-4 py-3 border border-blue-500 text-white font-semibold rounded hover:bg-blue-500 hover:text-white transition duration-200"
                         >
                             ORDER NOW
