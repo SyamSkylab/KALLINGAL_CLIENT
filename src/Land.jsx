@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom';
 export const Land = () => {
     const navigate = useNavigate()
     return (
-        <div className="bg-green-200 text-gray-800 min-h-screen font-sans">
+        <div className="bg-gradient-to-bl from-green-900 via-white to-green-900 text-gray-800 min-h-screen font-sans">
             {/* Header */}
-            <header className="fixed top-0 w-full h-20 sm:h-20 bg-green-800 text-white flex items-center justify-between px-4 shadow-md z-50">
+            <header className="fixed top-0 w-full h-20 sm:h-20 bg-gradient-to-br from-green-900 via-black to-green-900 text-white flex items-center justify-between px-4 shadow-md z-50">
                 <img src={logo} alt="Logo" style={{ height: '200px', width: '200px' }} />
                 <NavBar />
             </header>
@@ -25,7 +25,7 @@ export const Land = () => {
                 </section>
 
                 {/* Hero Image */}
-                <section className="flex justify-center mb-10 sm:mb-12">
+                <section className="flex bg-gradient-to-b from-green-900 rounded-4xl via-black to-green-900 justify-center mb-10 sm:mb-12">
                     <img
                         src={kaachiya}
                         alt="Kaachiya Oil"
