@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import logo from './assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,7 +32,7 @@ export const Booking = () => {
         }
     };
 
-    const handleQuantityChange = (name, size, value, price) => {
+    const handleQuantityChange = (name, size, value) => {
         const key = `${name}_${size}`;
         const newQuantity = { ...proQuantity, [key]: parseInt(value) || 0 };
         setQuantity(newQuantity);
@@ -71,6 +75,7 @@ export const Booking = () => {
                 total_price: totalPrice
             })
         });
+
         const data = await res.json();
         if (data.success) {
             navigate('/');
@@ -88,77 +93,93 @@ export const Booking = () => {
         <div className="min-h-screen bg-green-900 flex flex-col items-center py-6 px-4 sm:px-6">
             <img src={logo} alt="Logo" className="h-32 sm:h-40 mb-6" />
 
-            <Form className="w-full max-w-lg bg-green-100 border-2 rounded-xl p-6 shadow-lg" onSubmit={handleSubmit}>
+            <Form className="w-full max-w-2xl bg-gradient-to-br from-green-900 via-emerald-50 to-green-900 border-2 rounded-xl p-6 shadow-lg" onSubmit={handleSubmit}>
                 <Form.Group className="mb-4">
+                    <Form.Label>Name</Form.Label>
                     <Form.Control
                         type="text"
                         name="name"
                         placeholder="Enter name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="p-2"
                     />
                     {errors.name && <small className="text-red-600">{errors.name}</small>}
                 </Form.Group>
 
                 <Form.Group className="mb-4">
+                    <Form.Label>Mobile Number</Form.Label>
                     <Form.Control
                         type="text"
                         name="mobile_no"
                         placeholder="Enter mobile number"
                         value={formData.mobile_no}
                         onChange={handleInputChange}
-                        className="p-2"
                     />
                     {errors.mobile_no && <small className="text-red-600">{errors.mobile_no}</small>}
                 </Form.Group>
 
                 <Form.Group className="mb-4">
-                    <textarea
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
                         name="address"
                         placeholder="Enter address"
                         value={formData.address}
                         onChange={handleInputChange}
-                        className="w-full border p-2 rounded"
                     />
                     {errors.address && <small className="text-red-600">{errors.address}</small>}
                 </Form.Group>
 
-                {products.map((product, index) => {
-                    const key = `${product.name}_${product.size}`;
-                    return (
-                        <div key={index} className="mb-4">
-                            <label className="block text-green-800 font-semibold mb-1">
-                                {product.name} {product.size}:
-                            </label>
-                            <input
-                                type="number"
-                                min={0}
-                                value={proQuantity[key] || 0}
-                                onChange={(e) => handleQuantityChange(product.name, product.size, e.target.value, product.price)}
-                                name={key}
-                                placeholder="Enter Quantity"
-                                className="w-full border p-2 rounded"
-                            />
-                        </div>
-                    );
-                })}
-                {errors.quantity && <small className="text-red-600 block mb-4">{errors.quantity}</small>}
+                <h5 className="text-lg font-semibold mt-5 mb-3 text-green-800">Select Products</h5>
+                <Row>
+                    {products.map((product, index) => {
+                        const key = `${product.name}_${product.size}`;
+                        return (
+                            <Col md={6} key={index} className="mb-4">
+                                <Card className='bg-gradient-to-bl from-black via-green-300 to-black'>
+                                    <Card.Body>
+                                        <Card.Title className="text-green-800 text-base font-bold">
+                                            {product.name} ({product.size})
+                                        </Card.Title>
+                                        <Card.Text>Price: ₹{product.price}</Card.Text>
+                                        <InputGroup>
+                                            <InputGroup.Text>Qty</InputGroup.Text>
+                                            <Form.Control
+                                                type="number"
+                                                min={0}
+                                                value={proQuantity[key] || ''}
+                                                onChange={(e) =>
+                                                    handleQuantityChange(product.name, product.size, e.target.value)
+                                                }
+                                            />
+                                        </InputGroup>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        );
+                    })}
+                </Row>
 
-                <div className="mb-6">
-                    <label className="block font-semibold mb-1">Total Price:</label>
-                    <input
-                        className="w-full p-2 rounded bg-gray-100"
-                        value={totalPrice}
+                {errors.quantity && <small className="text-red-600 d-block mb-3">{errors.quantity}</small>}
+
+                <div className="mb-4">
+                    <Form.Label>Total Price</Form.Label>
+                    <Form.Control
                         type="number"
                         name="total_price"
                         readOnly
+                        value={totalPrice}
+                        className="bg-light"
                     />
                 </div>
 
                 <div className="text-center">
-                    <Button type="submit" className="bg-green-700 hover:bg-green-800 px-6 py-2 text-white rounded">
-                        Order
+                    <Button
+                        type="submit"
+                        className="bg-transparent  border-b-4 px-5 py-2 text-black fw-bold rounded"
+                    >
+                        Book Now
                     </Button>
                 </div>
             </Form>
