@@ -92,7 +92,7 @@ export const Booking = () => {
     return (
         <div className="min-h-screen bg-green-900 flex flex-col items-center py-6 px-4 sm:px-6">
             <img src={logo} alt="Logo" className="h-32 sm:h-40 mb-6" />
-            <h4 className='text-white'>Make Payment To This Number 8086390026 (mention name and address) </h4>
+            <h5 className='text-white font-light'>Make Payment To This Number 8086390026 (mention name and address) </h4>
             <Form className="w-full max-w-2xl bg-gradient-to-br from-green-900 via-emerald-50 to-green-900 border-2 rounded-xl p-6 shadow-lg" onSubmit={handleSubmit}>
                 <Form.Group className="mb-4">
                     <Form.Label>Name</Form.Label>
