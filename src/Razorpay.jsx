@@ -11,7 +11,7 @@ const RazorpayButton = ({ amount, bookingDetails }) => {
         if (!res) return alert('Razorpay SDK load failed');
 
         // Step 1: Create Razorpay Order
-        const result = await axios.post(`${process.env.VITE_SERVER_URL}/razorpay/create`, {
+        const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/razorpay/create`, {
             amount,
             bookingDetails,
         });
