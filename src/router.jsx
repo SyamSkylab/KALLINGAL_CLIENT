@@ -5,6 +5,7 @@ import { ProtectedLayout } from "./contexts/protectedLayout";
 import { Land } from "./Land";
 import { Booking } from "./Booking";
 import { Admin } from './Admin'
+import PaymentSuccess from "./Payment.succes";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
         path: '/reg',
         element: <Reg />
     },
+    { path: "/payment-success", element: <PaymentSuccess /> },
 
     {
         element: <ProtectedLayout />,
